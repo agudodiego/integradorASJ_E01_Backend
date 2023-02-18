@@ -41,4 +41,34 @@ public class PlataformaDaoImpl implements PlataformaDao {
 
         return plataformas;
     }
+
+    @Override
+    public Plataforma getPlataformaById(Integer id) {
+
+        Plataforma plataforma = new Plataforma();
+
+        try {
+            Connection connection = AdministradorConexiones.getInstance();
+            String sql = "SELECT * FROM plataforma WHERE id_plataforma = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                plataforma.setId_plataforma(rs.getInt("id_plataforma"));
+                plataforma.setPlataforma(rs.getString("plataforma"));
+                plataforma.setUrl(rs.getString("url"));
+            }
+
+            stmt.close();
+
+        } catch (SQLException sqle) {
+            System.out.println(sqle);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return plataforma;
+    }
 }

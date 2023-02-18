@@ -15,13 +15,13 @@ public class Serie {
     private String descripcion;
     private Integer temp_actual;
     private Integer episod_actual;
-    private Collection<Genero> genero;
+    private Collection<String> genero;
     private Plataforma plataforma;
 
     public Serie() {
     }
 
-    public Serie(String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<Genero> genero, Plataforma plataforma) {
+    public Serie(String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma) {
         this.titulo = titulo;
         this.temporadas = temporadas;
         this.episodios = episodios;
@@ -36,7 +36,7 @@ public class Serie {
         this.plataforma = plataforma;
     }
 
-    public Serie(Integer id_serie, String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<Genero> genero, Plataforma plataforma) {
+    public Serie(Integer id_serie, String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma) {
         this.id_serie = id_serie;
         this.titulo = titulo;
         this.temporadas = temporadas;
@@ -140,11 +140,11 @@ public class Serie {
         this.episod_actual = episod_actual;
     }
 
-    public Collection<Genero> getGenero() {
+    public Collection<String> getGenero() {
         return genero;
     }
 
-    public void setGenero(Collection<Genero> genero) {
+    public void setGenero(Collection<String> genero) {
         this.genero = genero;
     }
 

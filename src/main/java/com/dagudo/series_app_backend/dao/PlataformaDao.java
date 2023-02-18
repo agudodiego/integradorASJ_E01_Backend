@@ -7,4 +7,5 @@ import java.util.Collection;
 public interface PlataformaDao {
 
     public Collection<Plataforma> getAllPlataformas();
+    public Plataforma getPlataformaById(Integer id);
 }
