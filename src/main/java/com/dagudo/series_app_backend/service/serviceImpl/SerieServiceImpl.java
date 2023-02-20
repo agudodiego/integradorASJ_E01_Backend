@@ -17,4 +17,10 @@ public class SerieServiceImpl implements SerieService {
         Collection<Serie> listadoSeries = serieDaoImpl.getSeriesByUsuario(id);
         return listadoSeries;
     }
+
+    @Override
+    public Serie crearSerie(Serie s) {
+        Serie serie = serieDaoImpl.createSerie(s);
+        return serie;
+    }
 }

@@ -7,4 +7,5 @@ import java.util.Collection;
 public interface SerieDao {
 
     public Collection<Serie> getSeriesByUsuario(Integer id);
+    public Serie createSerie(Serie s);
 }

@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface SerieService {
     public Collection<Serie> getSeriesByUsuario(Integer id);
+    public Serie crearSerie(Serie s);
 }

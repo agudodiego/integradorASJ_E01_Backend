@@ -6,4 +6,5 @@ public interface UsuarioService {
 
     public Usuario traerUsuarioCompletoPorNombre(String user);
     public Usuario crearUsuario(Usuario usuario);
+    public Usuario chequearLogin(Usuario usuario);
 }

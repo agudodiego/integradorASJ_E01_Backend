@@ -59,4 +59,36 @@ public class SerieDaoImpl implements SerieDao {
 
         return listadoSeries;
     }
+
+    @Override
+    public Serie createSerie(Serie s) {
+
+        Serie serie = null;
+        try {
+            Connection connection = AdministradorConexiones.getInstance();
+            String sql = "INSERT INTO serie (id_serie, titulo, temporadas, episodios, img_small, img_big, fecha_lanzamiento, sitio_oficial, descripcion) VALUES (?,?,?,?,?,?,?,?,?)";
+            // aca quizs tenga que traerme las series de la base y chequearlas para ver que no este repetida
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, s.getId_serie());
+            stmt.setString(2, s.getTitulo());
+            stmt.setInt(3, s.getTemporadas());
+            stmt.setInt(4, s.getEpisodios());
+            stmt.setString(5, s.getImg_small());
+            stmt.setString(6, s.getImg_big());
+            stmt.setString(7, s.getAnio_lanzamiento());
+            stmt.setString(8, s.getSitio_oficial());
+            stmt.setString(9, s.getDescripcion());
+            stmt.execute();
+
+            stmt.close();
+            return s;
+
+        }catch (SQLException sqle) {
+            System.out.println(sqle);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+        return serie;
+    }
 }

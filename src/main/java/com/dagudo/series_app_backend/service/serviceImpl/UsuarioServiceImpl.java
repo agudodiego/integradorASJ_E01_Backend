@@ -43,12 +43,24 @@ public class UsuarioServiceImpl implements UsuarioService {
             Usuario u = null;
             return u;
         }
-
     }
 
     @Override
     public Usuario crearUsuario(Usuario usuario) {
         Usuario u = usuarioDaoImpl.postUsuario(usuario);
         return u;
+    }
+
+    @Override
+    public Usuario chequearLogin(Usuario usuario) {
+        ArrayList<Usuario> listaUsuarios = usuarioDaoImpl.getAllUsuarios();
+        Usuario us = null;
+
+        for (Usuario u : listaUsuarios) {
+            if ( (usuario.getUsuario().equals(u.getUsuario())) && (usuario.getContrasenia().equals(u.getContrasenia())) ) {
+                return this.traerUsuarioCompletoPorNombre(u.getUsuario());
+            }
+        }
+        return us;
     }
 }
