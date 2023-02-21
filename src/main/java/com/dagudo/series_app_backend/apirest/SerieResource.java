@@ -17,16 +17,16 @@ public class SerieResource {
     private SerieServiceImpl serieServiceImpl;
 
 
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response agregarSerie( Serie s ) {
+    public Response agregarSerie(Serie s) {
 
         Serie serie = serieServiceImpl.crearSerie(s);
 
         if (serie != null) {
-            return Response.ok().status(Response.Status.CREATED).entity(s).build();
+            Mensaje men = new Mensaje("Serie creada");
+            return Response.ok().status(Response.Status.CREATED).entity(men).build();
         }
         Mensaje men = new Mensaje("La serie ya esta en la BD");
         return Response.ok().status(Response.Status.NOT_FOUND).entity(men).build();

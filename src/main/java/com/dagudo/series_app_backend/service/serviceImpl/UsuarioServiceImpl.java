@@ -28,15 +28,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         if ( usuario.getId_usuario() != null) {
             Collection<Serie> listadoSeries = serieDaoImpl.getSeriesByUsuario(usuario.getId_usuario());
+            ArrayList<Serie> listadoSeriesAux = new ArrayList<>();
 
             for (Serie s: listadoSeries) {
-                Plataforma p = plataformaDaoImpl.getPlataformaById(s.getPlataforma().getId_plataforma());
-                s.setPlataforma(p);
-                Collection<String> listadoGeneros = generoDaoImpl.getGeneroBySerie(s.getId_serie());
-                s.setGenero(listadoGeneros);
+                if (s.getActiva()) {
+                    Plataforma p = plataformaDaoImpl.getPlataformaById(s.getPlataforma().getId_plataforma());
+                    s.setPlataforma(p);
+                    Collection<String> listadoGeneros = generoDaoImpl.getGeneroBySerie(s.getId_serie());
+                    s.setGenero(listadoGeneros);
+                    listadoSeriesAux.add(s);
+                }
             }
-
-            usuario.setSeries(listadoSeries);
+            usuario.setSeries(listadoSeriesAux);
             return usuario;
 
         } else {

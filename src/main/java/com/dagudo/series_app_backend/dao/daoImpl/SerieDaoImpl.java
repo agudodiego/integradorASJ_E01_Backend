@@ -41,6 +41,7 @@ public class SerieDaoImpl implements SerieDao {
                 s.setAnio_lanzamiento(rs.getString("fecha_lanzamiento"));
                 s.setSitio_oficial(rs.getString("sitio_oficial"));
                 s.setDescripcion(rs.getString("descripcion"));
+                s.setActiva(rs.getBoolean("activa"));
 
                 // seteo el id de la plataforma
                 p.setId_plataforma(rs.getInt("id_plataforma"));

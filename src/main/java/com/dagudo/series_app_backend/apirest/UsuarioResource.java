@@ -1,6 +1,5 @@
 package com.dagudo.series_app_backend.apirest;
 
-import com.dagudo.series_app_backend.dao.AdministradorConexiones;
 import com.dagudo.series_app_backend.model.Mensaje;
 import com.dagudo.series_app_backend.model.Serie;
 import com.dagudo.series_app_backend.model.Usuario;
@@ -10,9 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @Path("/usuario")
 public class UsuarioResource {
@@ -67,10 +63,26 @@ public class UsuarioResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response crearRelacion(@PathParam("idUsuario") Integer idUsuario, Serie s) {
 
-        String msg = usuarioSerieServiceImpl.crearRelacion(idUsuario, s.getId_serie(), s.getTemp_actual(), s.getEpisod_actual(), s.getPlataforma().getId_plataforma());
+        String msg = usuarioSerieServiceImpl.crearRelacion(idUsuario, s.getId_serie(), s.getTemp_actual(), s.getEpisod_actual(), s.getPlataforma().getId_plataforma(), s.getActiva());
 
-        if (msg.equals("OK")) {
+        if (msg.equals("OK") || msg.equals("ACTUALIZADA")) {
             Mensaje men = new Mensaje("Serie relacionada con el usuario");
+            return Response.ok().status(Response.Status.CREATED).entity(men).build();
+        }
+        Mensaje men = new Mensaje("Hubo un problema");
+        return Response.ok().status(Response.Status.NOT_FOUND).entity(men).build();
+    }
+
+    @Path("/serie/{idUsuario}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response actualizarRelacion(@PathParam("idUsuario") Integer idUsuario, Serie s) {
+
+        String msg = usuarioSerieServiceImpl.actualizarRelacion(idUsuario, s.getId_serie(), s.getTemp_actual(), s.getEpisod_actual(), s.getPlataforma().getId_plataforma(), s.getActiva());
+
+        if (msg.equals("ACTUALIZADA")) {
+            Mensaje men = new Mensaje("Serie actualizada");
             return Response.ok().status(Response.Status.CREATED).entity(men).build();
         }
         Mensaje men = new Mensaje("Hubo un problema");

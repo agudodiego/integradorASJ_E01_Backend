@@ -17,11 +17,13 @@ public class Serie {
     private Integer episod_actual;
     private Collection<String> genero;
     private Plataforma plataforma;
+    private boolean activa;
+
 
     public Serie() {
     }
 
-    public Serie(String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma) {
+    public Serie(String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma, boolean activa) {
         this.titulo = titulo;
         this.temporadas = temporadas;
         this.episodios = episodios;
@@ -34,9 +36,10 @@ public class Serie {
         this.episod_actual = episod_actual;
         this.genero = genero;
         this.plataforma = plataforma;
+        this.activa = activa;
     }
 
-    public Serie(Integer id_serie, String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma) {
+    public Serie(Integer id_serie, String titulo, Integer temporadas, Integer episodios, String img_small, String img_big, String anio_lanzamiento, String sitio_oficial, String descripcion, Integer temp_actual, Integer episod_actual, Collection<String> genero, Plataforma plataforma, boolean activa) {
         this.id_serie = id_serie;
         this.titulo = titulo;
         this.temporadas = temporadas;
@@ -50,6 +53,7 @@ public class Serie {
         this.episod_actual = episod_actual;
         this.genero = genero;
         this.plataforma = plataforma;
+        this.activa = activa;
     }
 
     public Integer getId_serie() {
@@ -154,5 +158,13 @@ public class Serie {
 
     public void setPlataforma(Plataforma plataforma) {
         this.plataforma = plataforma;
+    }
+
+    public boolean getActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
     }
 }
